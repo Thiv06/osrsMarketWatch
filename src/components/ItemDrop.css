@@ -1,12 +1,15 @@
 #itemInfo {
     display: flex;
-    align-items: center;
+    flex-direction: left;
+    align-items: left;
     border: 1px solid #ccc;
     border-radius: 8px;
-    background-color: #f9f9f9;
-    max-width: 600px; /* Adjust the width as needed */
+    background-color: #FFDEAD;
+    padding-left: 10px;
+    max-width: 1000px; /* Adjust the width as needed */
     margin: 10px 0; /* Adjust top and bottom margin as needed */
-    margin-top: 70px;
+    margin-top: 40px;
+    margin-left: 20px;
 }
 
 
@@ -21,14 +24,15 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    justify-content: space-evenly;
     padding: 10px;
 }
 
 .item-details {
     display: flex;
     flex-direction: column;
+    align-items: left;
     padding-left: 20px;
 }
 

@@ -3,18 +3,19 @@ import React, { useState } from "react"
 //import './NavBar.css'
 // import './ItemDrop'
 // import ItemDrop from "./ItemDrop"
-import {TextField, Button } from "@mui/material"
+import {TextField, Button, Box } from "@mui/material"
 import SearchIcon from '@mui/icons-material/Search';
+import Alert from '@mui/material/Alert';
 
 const NavBar = ({setResult}) =>{
-    
     const [item,setItem] = useState('')
     const [status,setStatus] = useState('typing')
     const [error, setError] = useState(null)
    
     async function handleSubmit(e){  //***SLOPPY NEEDS TO BE FIXED 
         e.preventDefault();
-        setStatus('submitting')
+        setStatus('submitting');
+        setError(null);
         const obj = item.toLowerCase()
         try{ //fetch item from GE API
             const URL = `http://localhost:5000/api/item_id?name=${encodeURIComponent(obj)}`; //Encode string to unicode
@@ -39,11 +40,12 @@ const NavBar = ({setResult}) =>{
             setStatus('done')
         }catch(err){
            setStatus('typing')
-           alert('Item Not Found')
+           //<Alert severity="error">Item Not Found Alert.</Alert>
+           //alert('Item Not Found')
            setError(err)
         }          
         setItem('') //Clear Search Entry
-        //setStatus('typing')
+        setStatus('typing')
     }
 
     
@@ -59,7 +61,8 @@ const NavBar = ({setResult}) =>{
    }
     
     return(
-       <form onSubmit={handleSubmit}>
+        <Box  sx={{justifyContent: 'center', display:'flex', alignItems:'center'}}>
+        <form onSubmit={handleSubmit} >
         <TextField
             id="standard-basic" 
             label="Find an Item ..." 
@@ -68,11 +71,14 @@ const NavBar = ({setResult}) =>{
             value={item}
             onChange={handleTextChange}
             disabled = {status === 'submitting'}
+            fullWidth sx={{ m: 1 }}
         />
-        <Button variant= "outlined"  startIcon={<SearchIcon />} disabled={item.length === 0 || status === 'submitting'}>
+        <Button  variant= "outlined" type="submit" startIcon={<SearchIcon />} disabled={item.length === 0 || status === 'submitting'}>
             Search
         </Button>
+        {error && (<Alert severity="error">Item Not Found Alert.</Alert>) }
        </form>
+        </Box>
     )
 }
 
