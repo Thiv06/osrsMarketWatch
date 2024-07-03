@@ -1,0 +1,7 @@
+
+#homepage{
+    min-height: 100%;
+    background-color: #f0f8ff;
+    padding: 20px; /* Optional: Adds some padding for better presentation */
+    border-radius: 8px; /* Optional: Adds rounded corners */
+}

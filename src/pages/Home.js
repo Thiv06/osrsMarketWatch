@@ -1,9 +1,7 @@
 import React, { useState } from "react"
 import NavBar from "../components/NavBar";
 import ItemDrop from "../components/ItemDrop";
-
-
-
+import Header from "../components/Header";
 const Home = () => {
     const [result,setResult] = useState({
         name: '',
@@ -16,6 +14,7 @@ const Home = () => {
   
     return (
       <div>
+        <Header/>
         <NavBar setResult={setResult} />
         <ItemDrop result={result} />
       </div>

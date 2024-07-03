@@ -3,6 +3,8 @@ import React, { useState } from "react"
 //import './NavBar.css'
 // import './ItemDrop'
 // import ItemDrop from "./ItemDrop"
+import {TextField, Button } from "@mui/material"
+import SearchIcon from '@mui/icons-material/Search';
 
 const NavBar = ({setResult}) =>{
     
@@ -58,13 +60,18 @@ const NavBar = ({setResult}) =>{
     
     return(
        <form onSubmit={handleSubmit}>
-        <textarea 
+        <TextField
+            id="standard-basic" 
+            label="Find an Item ..." 
+            variant="standard"
             placeholder="Search"
             value={item}
             onChange={handleTextChange}
             disabled = {status === 'submitting'}
         />
-        <button disabled={item.length === 0 || status === 'submitting'}>Search</button>
+        <Button variant= "outlined"  startIcon={<SearchIcon />} disabled={item.length === 0 || status === 'submitting'}>
+            Search
+        </Button>
        </form>
     )
 }
