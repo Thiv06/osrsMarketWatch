@@ -9,17 +9,7 @@ const NavBar = ({setResult}) =>{
     const [item,setItem] = useState('')
     const [status,setStatus] = useState('typing')
     const [error, setError] = useState(null)
-    // const [result,setResult] = useState({
-    //     name: '',
-    //     price: '',
-    //     image: '',
-    //     dailyTrend: '',
-    //     monthlyTrend: ''
-        
-    // }); //store all info about item
-
-
-    
+   
     async function handleSubmit(e){  //***SLOPPY NEEDS TO BE FIXED 
         e.preventDefault();
         setStatus('submitting')

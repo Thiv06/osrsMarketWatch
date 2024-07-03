@@ -4,10 +4,8 @@ import './ItemDrop.css'
 
 
 const ItemDrop =({result})=>{
-    if(result === null){
-        return(
-            <div>No results yet</div>
-        )
+    if(result.name === ''){
+        return<div></div>;        
     }
     return(
         <div id="itemInfo">
