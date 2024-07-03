@@ -1,21 +1,22 @@
 import React, { useState } from "react"
 //import { fetchData } from "../utils/fetchData"
-import './NavBar.css'
+//import './NavBar.css'
+// import './ItemDrop'
+// import ItemDrop from "./ItemDrop"
 
-
-const NavBar = () =>{
+const NavBar = ({setResult}) =>{
     
     const [item,setItem] = useState('')
     const [status,setStatus] = useState('typing')
     const [error, setError] = useState(null)
-    const [result,setResult] = useState({
-        name: '',
-        price: '',
-        image: '',
-        dailyTrend: '',
-        monthlyTrend: ''
+    // const [result,setResult] = useState({
+    //     name: '',
+    //     price: '',
+    //     image: '',
+    //     dailyTrend: '',
+    //     monthlyTrend: ''
         
-    }); //store all info about item
+    // }); //store all info about item
 
 
     
@@ -54,29 +55,11 @@ const NavBar = () =>{
     }
 
     
-   if(status === 'done'){ //send item to ItemDrop Component
-    console.log(result);
-        return(
-            <div id="itemInfo">
-                <div className="item-column">
-                    <img className='item-image' alt={result.name} src={result.image}/>
-                </div>              
-                <div className="item-details">
-                    <span className="item-name">{result.name}</span>
-                    <span className="item-price">Price:{result.price} gp</span>
-                </div>
-                <div className="item-details">
-                    <span className="item-name">Daily Price Change</span>
-                    <span className="item-price">{result.dailyTrend} gp</span>
-                </div>
-                <div className="item-details">
-                    <span className="item-name">30 Day Trend</span>
-                    <span className="item-price">{result.monthlyTrend}</span>
-                </div>
-                       
-            </div>
-        ) 
-   }
+//    if(status === 'done'){ //send item to ItemDrop Component
+//         return(
+//             ItemDrop(result)
+//         ) 
+//    }
 
 
    function handleTextChange(e){
