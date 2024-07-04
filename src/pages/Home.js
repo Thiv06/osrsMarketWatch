@@ -5,10 +5,12 @@ import Header from "../components/Header";
 const Home = () => {
     const [result,setResult] = useState({
         name: '',
-        price: '',
+        price: '', //Todays average price
         image: '',
         dailyTrend: '',
-        monthlyTrend: ''
+        monthlyTrend: '',
+        buy:0,
+        sell:0
         
     }); //store all info about item
   

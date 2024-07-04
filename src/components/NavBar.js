@@ -30,13 +30,19 @@ const NavBar = ({setResult}) =>{
             const data = await response2.json();
 
 
+            //fetch insta buy/sell price
+            const rsWikiURL = `http://localhost:5000/api/instant_prices?item=${encodeURIComponent(data1.item_id)}`
+            const response3 = await fetch(rsWikiURL)
+            const data2 = await response3.json();
+
             setResult({name:data.item.name, 
                 price:data.item.current.price,
                 image:data.item.icon_large,
                 dailyTrend:data.item.today.price,
-                monthlyTrend:data.item.day30.change
+                monthlyTrend:data.item.day30.change,
+                buy:data2.high,
+                sell:data2.low
             })
-            //setResult(e=>{name:e.data.item.name;price:e.data.item.current.price})
             setStatus('done')
         }catch(err){
            setStatus('typing')
@@ -47,14 +53,6 @@ const NavBar = ({setResult}) =>{
         setItem('') //Clear Search Entry
         setStatus('typing')
     }
-
-    
-//    if(status === 'done'){ //send item to ItemDrop Component
-//         return(
-//             ItemDrop(result)
-//         ) 
-//    }
-
 
    function handleTextChange(e){
     setItem(e.target.value)

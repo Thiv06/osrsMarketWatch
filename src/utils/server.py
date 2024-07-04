@@ -4,6 +4,11 @@ from flask_cors import CORS
 import requests
 from difflib import SequenceMatcher
 
+headers = {
+    'User-Agent': 'GE MarketWatch(personal project)',
+    'From': '@xchaos3 on Discord'  # This is another valid field
+}
+
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
 
@@ -66,7 +71,36 @@ def similar(a, b):
     """Calculate the similarity between two strings."""
     return SequenceMatcher(None, a, b).ratio()
 
+#####################################################################################
+# RS WIKI API
+#####################################################################################
 
+@app.route('/api/instant_prices', methods=['GET'])
+def get_latest_prices():
+    item_id = request.args.get('item')  # Default to item ID 1203 if not provided
+    print("(WIKI API)ITEM ID is:")
+    print(item_id)
+    #https://prices.runescape.wiki/api/v1/osrs/latest?id=${encodeURIComponent(data1.item_id)}
+    wikiURL = f'https://prices.runescape.wiki/api/v1/osrs/latest?id={item_id}'
+    print(wikiURL)
+    response = requests.get(wikiURL, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        #print(data)
+        if 'data' in data and item_id in data['data']:
+            item_data = data['data'][item_id]
+            #print(jsonify({'high': item_data['high'],'low': item_data['low']}))
 
+            return jsonify({
+                'high': item_data['high'],
+                #'highTime': item_data['highTime'],
+                'low': item_data['low'],
+                #'lowTime': item_data['lowTime']
+            })
+        else:
+            return jsonify({'error': 'Item data not found'}), 404
+    else:
+        return jsonify({'error': 'Unable to fetch data from external API'}), response.status_code
+    
 if __name__ == '__main__':
     app.run(debug=True)
