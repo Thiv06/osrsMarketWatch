@@ -59,7 +59,7 @@ const ItemDrop =({result})=>{
         </div>
         <div className="item-details">
             <span className="item-name">Daily Price Change</span>
-            <span className="item-price" style={{color: getTrendStatus(result.dailyTrend)}}> {result.dailyTrend} gp</span>
+            <span className="item-price" style={{color: getProfit(result.dailyTrend)}}> {result.dailyTrend} gp</span>
         </div>
         <div className="item-details">
             <span className="item-name">30 Day Trend</span>

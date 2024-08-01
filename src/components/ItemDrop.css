@@ -21,7 +21,7 @@
     border-radius: 4px;
 }
 
-/* .item-column {
+.item-column {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -29,7 +29,7 @@
     justify-content: space-evenly;
     padding: 10px;
     
-} */
+}
 
 .item-details {
     display:flex;

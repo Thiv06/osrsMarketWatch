@@ -18,7 +18,7 @@ const NavBar = ({setResult}) =>{
         setError(null);
         const obj = item.toLowerCase()
         try{ //fetch item from GE API
-            const URL = `http://localhost:5000/api/item_id?name=${encodeURIComponent(obj)}`; //Encode string to unicode
+            const URL = `http://localhost:5000/api/item_id?name=${encodeURIComponent(obj)}`; //Fetch all Items
             const response1 = await fetch(URL)
             const data1 = await response1.json();
             if (!response1.ok) {
@@ -40,6 +40,7 @@ const NavBar = ({setResult}) =>{
                 image:data.item.icon_large,
                 dailyTrend:data.item.today.price,
                 monthlyTrend:data.item.day30.change,
+
                 buy:data2.high,
                 sell:data2.low
             })

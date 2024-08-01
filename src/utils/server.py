@@ -35,6 +35,7 @@ def get_item_id():
     
     # Construct API URL with user input
     print(item_name)
+    print("FETCHING ITEMS from list(API CALL 1):   ")
     api_url = f'https://secure.runescape.com/m=itemdb_oldschool/api/catalogue/items.json?category=1&alpha={item_name}&page=1'
     
     try:
@@ -43,16 +44,27 @@ def get_item_id():
         
         data = response.json()
         print('JSON RESPONSE: ')
-        print(data)
+        #print(data)
         if 'items' in data and len(data['items']) > 0:
             # Find the closest match based on item name similarity
             best_match = None
             best_similarity = 0.0
             
+            #list of items
+            # items = data.get('items')
+            # item_list = [{"id": item["id"], "name":item["name"]} for item in items]
+            # print(item_list)         
+            # print("/////////////next call //////////////////")
+            # return jsonify(item_list),200
+        
+
+
+
             for item in data['items']:
                 item_name_api = item['name'].lower()
                 similarity = similar(item_name, item_name_api)
-                
+
+
                 if similarity > best_similarity:
                     best_similarity = similarity
                     best_match = item

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import NavBar from "../components/NavBar";
 import ItemDrop from "../components/ItemDrop";
-import Header from "../components/Header";
+import Header from "../components/Header.js";
 const Home = () => {
     const [result,setResult] = useState({
         name: '',
@@ -13,6 +13,7 @@ const Home = () => {
         sell:0
         
     }); //store all info about item
+
   
     return (
       <div>
